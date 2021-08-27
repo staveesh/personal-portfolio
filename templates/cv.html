@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ user.shortname }}'s blog{% endblock %}
+{% block content %}
+<section class="blog-list px-3 py-5 p-md-5">
+    <div class="container single-col-max-width" style="text-align:center">
+        <h3 class="heading"><i class="fas fa-briefcase fa-fw"></i>Work
+        </h3>
+        {% for job in user.journey.jobs %}
+        <br><br>
+        <div style="display:flex; border: 1px solid #cccccc; background: #ffffff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 10px">
+            <div style="width:20%; margin:20px">
+                <img src="{{ job.image }}" alt="image"
+                     style="width:100px;border:1px solid #cccccc;border-radius:50%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px">
+            </div>
+            <div>
+                <p style="float:right;"><i class="fas fa-thumbtack fa-fw"></i>{{ job.location }}</p>
+                <h6 style="text-align:initial">{{ job.designation }}</h6>
+                <p style="text-align:initial"><i class="fas fa-calendar-alt fa-fw"></i>{{ job.from }}-{{ job.to }}
+                </p>
+                <h4 style="text-align:initial">{{ job.organization }}</h4>
+                <p style="text-align:initial">{{ job.description }}</p>
+                {% for tag in job.tags %}
+                    <div style="display:inline-flex; margin: 5px; border-radius: 10%; padding: 5px; background: #e4f0fc; color: #5ea5ee">{{ tag }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        <br><br><br>
+        <h3 class="heading"><i class="fas fa-user-graduate fa-fw"></i>Education
+        </h3>
+        {% for edu in user.journey.education %}
+        <br><br>
+        <div style="display:flex; border: 1px solid #cccccc; background: #ffffff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 10px">
+            <div style="width:20%; margin:20px">
+                <img src="{{ edu.image }}" alt="image"
+                     style="width:100px;border:1px solid #cccccc;border-radius:50%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px">
+            </div>
+
+            <div>
+                <p style="float:right;"><i class="fas fa-thumbtack fa-fw"></i>{{ edu.location }}</p>
+                <h6 style="text-align:initial">{{ edu.degree }}</h6>
+                <p style="text-align:initial"><i class="fas fa-calendar-alt fa-fw"></i>{{ edu.from }}-{{ edu.to }}
+                </p>
+                <h4 style="text-align:initial">{{ edu.university }}</h4>
+                <p style="text-align:initial">{{ edu.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <br><br><br>
+        <h3 class="heading"><i class="far fa-file-alt fa-fw"></i>Publications
+        </h3>
+        {% for pub in user.publications %}
+        <br>
+        <p style="text-align:initial; border: 1px solid #cccccc; background: #ffffff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 10px">{{ pub }}</p>
+        {% endfor %}
+        <br><br><br>
+        <a class="btn btn-primary" href="/static/documents/Taveesh_CV.pdf" target="_blank">Download my Résumé</a>
+    </div>
+</section>
+{% endblock %}

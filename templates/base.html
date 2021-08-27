@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- FontAwesome JS-->
-	<script defer src="{{ url_for('static', filename='fontawesome/js/all.min.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='fontawesome/js/all.min.js') }}"></script>
 
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-2.css') }}">
@@ -20,70 +20,69 @@
 </head>
 
 <body>
+<header class="header text-center">
+    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="/"> {{ user.shortname }}'s homepage </a></h1>
 
-    <header class="header text-center">
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="/"> {{ user.shortname }}'s blog </a></h1>
+    <nav class="navbar navbar-expand-lg navbar-dark">
 
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <div id="navigation" class="collapse navbar-collapse flex-column">
+            <div class="profile-section pt-3 pt-lg-0">
+                <img class="profile-image mb-3 rounded-circle mx-auto" src="static/images/profile.jpeg" alt="image">
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="static/images/profile.jpeg" alt="image" >
+                <div class="bio mb-3">{{ user.description }}<br><a href="/about">Find out more about me</a></div>
+                <!--//bio-->
+                <ul class="social-list list-inline py-3 mx-auto">
+                    <li class="list-inline-item"><a href="{{ user.social.twitter }}"><i
+                            class="fab fa-twitter fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ user.social.linkedin }}"><i
+                            class="fab fa-linkedin-in fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ user.social.github }}"><i
+                            class="fab fa-github-alt fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ user.social.instagram }}"><i
+                            class="fab fa-instagram fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="{{ user.social.email }}"><i class="far fa-envelope fa-fw"></i></a>
+                    </li>
+                </ul><!--//social-list-->
+                <hr>
+            </div><!--//profile-section-->
 
-					<div class="bio mb-3">{{ user.description }}<br><a href="/about">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto">
-			            <li class="list-inline-item"><a href="{{ user.social.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="{{ user.social.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="{{ user.social.github }}"><i class="fab fa-github-alt fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="{{ user.social.instagram }}"><i class="fab fa-instagram fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="{{ user.social.facebook }}"><i class="fab fa-facebook fa-fw"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr>
-				</div><!--//profile-section-->
+            <ul class="navbar-nav flex-column text-start">
+                <li class="nav-item">
+                    <a class="nav-link {{ 'active' if user.page == 'home' }} " href="/"><i
+                            class="fas fa-home fa-fw me-2"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ 'active' if user.page == 'resume' }} " href="/resume"><i
+                            class="fas fa-user fa-fw me-2"></i>Résumé</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ 'active' if user.page == 'blog' }} " href="/blog"><i
+                            class="fas fa-code-branch fa-fw me-2"></i>Blog</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-				<ul class="navbar-nav flex-column text-start">
-					<li class="nav-item">
-					    <a class="nav-link active" href="/"><i class="fas fa-home fa-fw me-2"></i>Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-					    <a class="nav-link" href="/blog"><i class="fas fa-bookmark fa-fw me-2"></i>Blog</a>
-					</li>
-					<li class="nav-item">
-					    <a class="nav-link" href="/about"><i class="fas fa-user fa-fw me-2"></i>About me</a>
-					</li>
-				</ul>
+<div class="main-wrapper">
+    {% block content %}
+    {% endblock %}
+    <footer class="footer text-center py-2 theme-bg-dark">
 
-				<div class="my-2 my-md-3">
-				    <a class="btn btn-primary" href="/contact" target="_blank">Get in Touch</a>
-				</div>
-			</div>
-		</nav>
-    </header>
+        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a
+                href="https://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
 
-    <div class="main-wrapper">
-
-		{% block content %}
-		{% endblock %}
-
-	    <footer class="footer text-center py-2 theme-bg-dark">
-
-	        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="https://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-
-	    </footer>
-
-    </div><!--//main-wrapper-->
-
-
-    <!-- Javascript -->
-    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-
-
+    </footer>
+</div><!--//main-wrapper-->
+<!-- Javascript -->
+<script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>
